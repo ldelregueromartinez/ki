@@ -18,7 +18,7 @@ from tcms.utils.secrets import get_secret
 
 
 # Set to False for production
-DEBUG = True
+DEBUG = False
 
 
 # Make this unique, and don't share it with anybody.
@@ -28,24 +28,14 @@ SECRET_KEY = "^8y!)$0t7yq2+65%&_#@i^_o)eb3^q--y_$e7a_=t$%$1i)zuv"  # nosec:B105
 # Database settings
 DATABASES = {
     "default": {
-        "ENGINE": get_secret("KIWI_DB_ENGINE", "django.db.backends.mysql"),
-        "NAME": get_secret("KIWI_DB_NAME", "kiwi"),
-        "USER": get_secret("KIWI_DB_USER", "kiwi"),
-        "PASSWORD": get_secret("KIWI_DB_PASSWORD", "kiwi"),
-        "HOST": get_secret("KIWI_DB_HOST", ""),
-        "PORT": get_secret("KIWI_DB_PORT", ""),
-        "OPTIONS": {},
-    },
+        "ENGINE": str("django.db.backends.mysql"),
+        "NAME": str("kiwi"),
+        "USER": str("kiwi"),
+        "PASSWORD": str("kiwi"),
+                },
 }
 
-# handle MariaDB only options
-if DATABASES["default"]["ENGINE"].find("mysql") > -1:
-    DATABASES["default"]["OPTIONS"].update(  # pylint: disable=objects-update-used
-        {
-            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
-            "charset": "utf8mb4",
-        }
-    )
+
 
 
 # New setting since Django 3.2, used internally
@@ -80,7 +70,7 @@ EMAIL_SUBJECT_PREFIX = "[Kiwi-TCMS] "
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.11/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['localhost','ldelregueromartinez.pythonanywhere.com']
 
 
 # default group in which new users will be created
@@ -152,7 +142,7 @@ CACHES = {
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = "/Kiwi/static/"
+STATIC_ROOT = os.path.join('staticfiles')
 
 
 AUTHENTICATION_BACKENDS = [
