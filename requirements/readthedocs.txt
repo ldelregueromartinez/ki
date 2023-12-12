@@ -1,0 +1,17 @@
+-r base.txt
+
+django-debug-toolbar
+Sphinx
+sphinx-removed-in
+docutils
+
+flake8
+epydoc
+coverage
+factory_boy
+mock
+pydot
+# linting tools
+pylint-django==2.5.5
+twine
+pyOpenSSL

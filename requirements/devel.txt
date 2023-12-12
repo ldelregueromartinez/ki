@@ -1,0 +1,11 @@
+-r readthedocs.txt
+tcms-api
+doc8
+isort==5.12.0
+colorama
+black
+parameterized
+robotframework
+robotframework-seleniumlibrary
+selenium==4.9.1
+textdistance
